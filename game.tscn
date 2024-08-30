@@ -1,0 +1,222 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3i7m83rs5d8g"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_x7m1d"]
+[ext_resource type="PackedScene" uid="uid://6hkfo851vy3s" path="res://points.tscn" id="2_eouol"]
+
+[node name="Test" type="Node2D"]
+script = ExtResource("1_x7m1d")
+
+[node name="EndTurnButton" type="Button" parent="."]
+visible = false
+offset_left = 371.0
+offset_top = 569.0
+offset_right = 574.0
+offset_bottom = 618.0
+theme_override_font_sizes/font_size = 20
+text = "Закончить ход"
+
+[node name="StandButton" type="Button" parent="."]
+visible = false
+offset_left = 591.0
+offset_top = 570.0
+offset_right = 794.0
+offset_bottom = 619.0
+theme_override_font_sizes/font_size = 20
+text = "Пас"
+
+[node name="PlayerSumLabel" type="Label" parent="."]
+offset_left = 479.0
+offset_top = 24.0
+offset_right = 557.0
+offset_bottom = 66.0
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemySumLabel" type="Label" parent="."]
+offset_left = 594.0
+offset_top = 24.0
+offset_right = 672.0
+offset_bottom = 66.0
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerBoard" type="GridContainer" parent="."]
+offset_left = 132.0
+offset_top = 51.0
+offset_right = 391.0
+offset_bottom = 324.0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 3
+
+[node name="EnemyBoard" type="GridContainer" parent="."]
+offset_left = 765.0
+offset_top = 51.0
+offset_right = 1024.0
+offset_bottom = 324.0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 3
+
+[node name="PlayerHand" type="HBoxContainer" parent="."]
+offset_left = 132.0
+offset_top = 459.0
+offset_right = 455.0
+offset_bottom = 550.0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Host" type="Button" parent="."]
+offset_left = 474.0
+offset_top = 144.0
+offset_right = 552.0
+offset_bottom = 175.0
+text = "Host"
+
+[node name="Join" type="Button" parent="."]
+offset_left = 594.0
+offset_top = 144.0
+offset_right = 672.0
+offset_bottom = 175.0
+text = "Join"
+
+[node name="HostIP" type="LineEdit" parent="."]
+offset_left = 474.0
+offset_top = 194.0
+offset_right = 676.0
+offset_bottom = 225.0
+placeholder_text = "Host IP"
+alignment = 1
+
+[node name="LocalIP" type="Label" parent="."]
+offset_left = 374.0
+offset_top = 106.0
+offset_right = 730.0
+offset_bottom = 130.0
+horizontal_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(576, 324)
+
+[node name="TurnStatus" type="Label" parent="."]
+visible = false
+offset_left = 889.0
+offset_top = 571.0
+offset_right = 973.0
+offset_bottom = 615.0
+
+[node name="PlayerStand" type="Label" parent="."]
+visible = false
+offset_left = 132.0
+offset_top = 397.0
+offset_right = 391.0
+offset_bottom = 439.0
+theme_override_font_sizes/font_size = 30
+text = "Пас"
+horizontal_alignment = 1
+
+[node name="EnemyStand" type="Label" parent="."]
+visible = false
+offset_left = 765.0
+offset_top = 397.0
+offset_right = 1024.0
+offset_bottom = 439.0
+theme_override_font_sizes/font_size = 30
+text = "Пас"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PlayerPointsView" parent="." instance=ExtResource("2_eouol")]
+visible = false
+offset_left = 18.0
+offset_top = 89.0
+offset_right = 88.0
+offset_bottom = 279.0
+
+[node name="EnemyPointsView" parent="." instance=ExtResource("2_eouol")]
+visible = false
+offset_left = 1057.0
+offset_top = 89.0
+offset_right = 1127.0
+offset_bottom = 279.0
+
+[node name="RoundResultWindow" type="ColorRect" parent="."]
+visible = false
+offset_left = 112.0
+offset_top = 69.0
+offset_right = 1030.0
+offset_bottom = 634.0
+color = Color(0, 0, 0, 0.513726)
+
+[node name="RoundResultLabel" type="Label" parent="RoundResultWindow"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Вы проиграли"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameResultWindow" type="ColorRect" parent="."]
+visible = false
+offset_left = 126.0
+offset_top = 29.0
+offset_right = 1044.0
+offset_bottom = 594.0
+color = Color(0, 0, 0, 0.513726)
+
+[node name="GameResultLabel" type="Label" parent="GameResultWindow"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Вы проиграли"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeaveButton" type="Button" parent="GameResultWindow"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -93.0
+offset_top = -135.0
+offset_right = 82.0
+offset_bottom = -93.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Ок"
+
+[connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]
+[connection signal="pressed" from="StandButton" to="." method="_on_stand_button_pressed"]
+[connection signal="pressed" from="Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Join" to="." method="_on_join_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="GameResultWindow/LeaveButton" to="." method="_on_leave_button_pressed"]

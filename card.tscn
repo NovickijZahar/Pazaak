@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3k28y3m12qfs"]
+
+[ext_resource type="Texture2D" uid="uid://i2i6c1c8frvs" path="res://assets/cards/blue_card.png" id="1_4lhga"]
+[ext_resource type="Script" path="res://card.gd" id="2_to388"]
+
+[node name="Card" type="TextureRect"]
+offset_right = 73.0
+offset_bottom = 91.0
+texture = ExtResource("1_4lhga")
+script = ExtResource("2_to388")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 73.0
+offset_bottom = 91.0
+
+[node name="Value" type="Label" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 27.0
+offset_right = 63.0
+offset_bottom = 50.0
+text = "0"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 73.0
+offset_bottom = 91.0
+focus_mode = 0
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

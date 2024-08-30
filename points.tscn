@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://6hkfo851vy3s"]
+
+[ext_resource type="Texture2D" uid="uid://bh1d2siftkhd" path="res://assets/circles/GrayCircle.png" id="1_cw0yw"]
+[ext_resource type="Script" path="res://points.gd" id="1_wasxs"]
+
+[node name="Points" type="MarginContainer"]
+offset_right = 21.0
+offset_bottom = 40.0
+script = ExtResource("1_wasxs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.099986, 0.099986, 0.099986, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FirstPoint" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("1_cw0yw")
+expand_mode = 1
+
+[node name="SecondPoint" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("1_cw0yw")
+expand_mode = 1
+
+[node name="ThirdPoint" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("1_cw0yw")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
