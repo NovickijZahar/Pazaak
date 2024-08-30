@@ -93,7 +93,6 @@ func _ready():
 	
 
 func connected(id):
-	game_result_window.show()
 	enemy_id = id
 	local_ip.hide()
 	end_turn_button.show()
