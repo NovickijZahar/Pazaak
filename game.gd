@@ -1,5 +1,6 @@
 extends Node2D
 
+
 @onready var end_turn_button = $EndTurnButton
 @onready var stand_button = $StandButton
 @onready var host: Button = $Host
@@ -17,6 +18,7 @@ extends Node2D
 
 var card_scene = preload("res://card.tscn")
 @onready var player_hand = $PlayerHand
+@onready var enemy_hand = $EnemyHand
 @onready var player_board = $PlayerBoard
 @onready var enemy_board = $EnemyBoard
 @onready var turn_status = $TurnStatus
@@ -90,6 +92,8 @@ func _ready():
 	player_board.connect("child_exiting_tree", calculate_player_count, 1)
 	enemy_board.connect("child_entered_tree", calculate_enemy_count, 1)
 	enemy_board.connect("child_exiting_tree", calculate_enemy_count, 1)
+	player_hand.connect("child_entered_tree", player_gain_card, 1)
+	player_hand.connect("child_exiting_tree", player_play_card, 1)
 	
 
 func connected(id):
@@ -101,13 +105,16 @@ func connected(id):
 	enemy_points_view.show()
 	for i in range(4):
 		var card = card_scene.instantiate()
-		match randi_range(0, 1):
-			0: 
-				card.type = 0
-				card.value = randi_range(1, 6)
-			1:
+		match randi_range(1, 3):
+			1: 
 				card.type = 1
+				card.value = randi_range(1, 6)
+			2:
+				card.type = 2
 				card.value = -randi_range(1, 6)
+			3:
+				card.type = 3
+				card.value = randi_range(1, 6)
 		player_hand.add_child(card)
 		card.can_be_played = true
 		card.connect("clicked", play_from_hand.bind(card))
@@ -152,7 +159,7 @@ func play_default():
 	if !player_is_stand:
 		var card = card_scene.instantiate()
 		card.value = randi_range(1, 10)
-		card.type = 2
+		card.type = 0
 		player_board.add_child(card)
 	else:
 		end_turn()
@@ -278,6 +285,22 @@ func end_round():
 	else:
 		player_turn = false
 
+func player_gain_card(_node):
+	rpc("rpc_gain_card")
+	
+func player_play_card(_node):
+	rpc("rpc_play_card")
+	
+@rpc("any_peer", "call_remote", "reliable")
+func rpc_gain_card():
+	var card_back = TextureRect.new()
+	card_back.texture = preload("res://assets/cards/card_back.png")
+	enemy_hand.add_child(card_back)
+
+@rpc("any_peer", "call_remote", "reliable")
+func rpc_play_card():
+	if enemy_hand.get_child_count():
+		enemy_hand.remove_child(enemy_hand.get_child(0))
 
 
 func _on_leave_button_pressed():

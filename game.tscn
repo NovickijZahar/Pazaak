@@ -70,6 +70,14 @@ offset_bottom = 550.0
 theme_override_constants/separation = 10
 alignment = 1
 
+[node name="EnemyHand" type="HBoxContainer" parent="."]
+offset_left = 730.0
+offset_top = 459.0
+offset_right = 1053.0
+offset_bottom = 550.0
+theme_override_constants/separation = 10
+alignment = 1
+
 [node name="Host" type="Button" parent="."]
 offset_left = 474.0
 offset_top = 144.0
